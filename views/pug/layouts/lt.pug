@@ -1,9 +1,11 @@
-extends layout.pug
+extends layout
 
 block append html
   doctype html
   html(lang='ru')
     head
-        block head
+        title ~
+        include meta
+        link(rel='stylesheet' href=`css/bundle.min.${cacheBust}.css`)
     body
         block body
