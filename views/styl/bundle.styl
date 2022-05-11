@@ -10,7 +10,16 @@ body
 // <track-list>
 .container
   display grid
+  // ~ + mixin __не проеби
   grid-template-rows 100px repeat(2, 4fr) 70px
+  // -> func auto__size__columns___~1()
+  grid-gap 2px
+  box-sizing border-box
+  // -> func auto__size__columns___~2()
+  padding 2px
+  width auto
+  height auto
+
 
 
 @media (min-width 48em)
