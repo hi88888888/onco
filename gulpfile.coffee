@@ -6,14 +6,14 @@ join = path.join
 
 # config
 srcDir  = join __dirname, 'views'
-destDir = join __dirname, 'dist'
+destDir = join __dirname, 'assets'
 jsSrc   = join srcDir, 'js', 'bundle.js'
 jsDest  = join destDir, 'js'
 cssSrc  = join srcDir, 'styl', '*.styl'
 cssDest = join destDir, 'css'
 pugDir  = join srcDir, 'pug'
 pugSrc  = join pugDir, '**', '*.pug'
-pugExcl = '!' + join pugDir, 'lib', '**'
+pugExcl = '!' + join pugDir, 'layouts', '**'
 htmlSrc = [pugSrc, pugExcl]
 
 # date for cache-busting
@@ -30,7 +30,7 @@ plumberErr = (err) ->
 # https://github.com/sindresorhus/del
 del = require 'del'
 gulp.task 'clean', ->
-  return del ['dist']
+  return del ['assets']
 
 # js
 # https://github.com/backflip/gulp-resolve-dependencies

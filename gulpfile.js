@@ -12,7 +12,7 @@
   // config
   srcDir = join(__dirname, 'views');
 
-  destDir = join(__dirname, 'dist');
+  destDir = join(__dirname, 'assets');
 
   jsSrc = join(srcDir, 'js', 'bundle.js');
 
@@ -48,7 +48,7 @@
   del = require('del');
 
   gulp.task('clean', function() {
-    return del(['dist']);
+    return del(['assets']);
   });
 
   // js
