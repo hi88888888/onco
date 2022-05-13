@@ -183,6 +183,20 @@ body.bg-primary
   // getter - получаем значения из хешей
   border hpsb.unit hpsb.sd hpsb.b
 
+
+
+
+
+//смартфоны
+@media (min-width: 320px) and (max-width: 480px), (min-width: 480px) and (max-width: 768px)
+//планшеты
+@media (min-width: 758px) and (max-width: 1024px)
+//нетбуки
+@media (min-width: 1024px) and (max-width: 1280px)
+//мониторы
+@media (min-width: 1280px) and (max-width: 1600px), (min-width: 1600px) and (max-width: 1920px), (min-width: 1920px)
+
+
 //:nth-child(n+3):nth-child(-n+15)
 // @media (max-width: 500px)
 //  .foo
@@ -293,3 +307,32 @@ body.bg-primary
     display none
 
 //@media
+
+//$var-1 = 100px
+//$var-2 = 30px
+//$var-rgb-color = rgb(132, 160, 28)
+//
+//.white-mouse
+//  width $var-2
+//  height $var-1 - $var-2
+//  margin $var-1 (-($var-2))
+//  padding ($var-1 / 2)
+//  margin-top @padding
+//  margin "calc(10% - %s)" % $var-1
+//  margin "calc(%s - %s)" % ($var-1 $var-2)
+//
+//  background $var-rgb-color
+//  background rgba($var-rgb-color, 0.5)
+
+
+// Миксин создания grid на основе минимального\максимального значений и инкремента
+//generate-grid(increment,start,end,return-dimension=false)
+//  total = start
+//for n, x in 0..((end - start) / increment)
+//  if return-dimension
+//    if x+1 is return-dimension
+//      return total
+//    else
+//  .column-{x+1}
+//    width total
+//total = total + increment
