@@ -1,44 +1,117 @@
 @require 'lib/helpers'
 @require 'lib/foundation'
 
+// test mixin
+my-custom-block(fz)
+  border-radius 5px
+  border 1px solid
+  font-size fz
+  margin fz
+
+vendors = webkit moz o ms official
+height()
+  for vendor in vendors
+    if vendor == official
+      height: arguments
+    else
+      -{vendor}-: arguments
+
+@font-face
+  font-family Geo
+  font-style normal
+  src url(fonts/geo_sans_light/GensansLight.ttf)
+//.ingeo
+//font-family Geo
+
+@keyframes pulse
+  0%
+    background-color red
+    transform scale(1.0) rotate(0deg)
+  33%
+    background-color blue
+    -webkit-transform scale(1.1) rotate(-5deg)
+
+//table
+//for row in 1 2 3 4 5
+//tr:nth-child({row})
+//height: 10px * row
+
+//color blue
+//a
+//background-color: @color
+
+//#prompt
+//  position: absolute
+//  top: 150px
+//  left: 50%
+//  width: w = 200px
+//  margin-left: -(w / 2)
+
+//add(a, b = a)
+//  a = unit(a, px)
+//  b = unit(b, px)
+//  a + b
+//
+//add(15%, 10deg)
+//// => 25
+
+//ul
+//  li a
+//    display: block
+//    color: blue
+//    padding: 5px
+//    html.ie &
+//      padding: 6px
+//    &:hover
+//      color: red
+
+u = 1rem
+b = black
+c = center
+p = padding
+m = margin
+fon = #F4F3F3
+bkg = background
 
 
 body
-  padding 1rem
-  background #F4F3F3
+  p u
+  bkg fon
 
 // <track-list> - 6 групп параметров
+// ~ + mixin __ на значение 209px
+//grid-template-rows 100px repeat(2, 4fr) 70px
+//grid-template-rows repeat(3, minmax(209px, auto)) -> небольшой хак - добавил вместо одного параметра - два включая max-content -< можно без этого параметра
+// 3 rows -> grid-template-rows __ minmax(max-content, 209px) minmax(max-content, 209px) minmax(max-content, auto) __ -< апробация ^ свертка
+// grid-template-rows repeat(3, minmax(195px, auto)) max-content
+// -> func auto__size__columns___~2()
+//padding 2px
+//height 100% - используем доступное пространство
+// test1 ! my-custom-block(2em)
+// test2
+//@media screen and (max-width: 700px)
+//  my-custom-block(1em)
 .container
   display grid
-
-  // ~ + mixin __ на значение 209px
-  //grid-template-rows 100px repeat(2, 4fr) 70px
-  //grid-template-rows repeat(3, minmax(209px, auto)) -> небольшой хак - добавил вместо одного параметра - два включая max-content -< можно без этого параметра
-  // 3 rows -> grid-template-rows __ minmax(max-content, 209px) minmax(max-content, 209px) minmax(max-content, auto) __ -< апробация ^ свертка
-  grid-template-rows repeat(3, minmax(209px, auto)) max-content
-
-  grid-auto-rows 200px
-  grid-gap 1rem
+  grid-template-rows repeat(3, minmax(195px, auto)) max-content
+  grid-auto-rows 195px
+  grid-gap u
   box-sizing border-box
-
-  // -> func auto__size__columns___~2()
-  //padding 2px
-
-  //height 100%
-  height max-content
-
-  border 2px solid black
-  align-content center
-  justify-content center
-  align-items center
-
-
-
+  height fit-content
+  border 2px solid b
+  align-content c
+  justify-content c
+  align-items c
 
 @media (min-width 48em)
   body
-    padding 0
+    p 0
 
 @media (max-width 18.75em)
   html
     font-size 5.5vw
+
+@media print
+  #header
+  #footer
+    display none
