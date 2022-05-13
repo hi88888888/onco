@@ -117,14 +117,24 @@ align()
   justify-content c
   align-items c
 
-// > * + *
+/**
+  * trinspiles to:
+  * .bg-primary { background-color: #46555F}
+  * .bg-primary { background-color: #7D8C96}
+  */
+$color-primary = #F4F3F3
+$color-secondary = #F3F4F4
+colors = 'primary' 'secondary'
+for color in colors
+  {'.bg-' + color}
+    background-color lookup('$color-' + color) !important
 
-body
+
+// > * + *
+body.bg-primary
   p u
-  color := fon
-  color ?= fon
-  color = color is defined ? color : white
-  background fon
+  //fon = #F4F3F3
+
 
 // <track-list> - 6 групп параметров
 // ~ + mixin __ на значение 209px
@@ -151,6 +161,12 @@ body
   grid-gap u
   box-sizing border-box
   height fit-content
+
+  col := fon
+  col ?= fon
+  col = col is defined ? col : white
+  background col
+
   align()
   //border 2px solid b
   // переопределили
