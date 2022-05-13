@@ -184,28 +184,37 @@ body.bg-primary
   border hpsb.unit hpsb.sd hpsb.b
 
 
+//////////////////////////////
+//medium = 'screen and (min-width: 768px)'
+//large = 'screen and (min-width: 992px)'
+//xlarge = 'screen and (min-width: 1200px)'
 
+//смартфоны - medium
+//@media screen and (min-width: 320px) and (max-width: 480px), (min-width: 480px) and (max-width: 768px)
+//планшеты - large
+//@media screen and (min-width: 768px) and (max-width: 992px), (min-width: 992px) and (max-width: 1024px)
+//нетбуки  - xlarge
+//@media screen and (min-width: 1024px) and (max-width: 1280px)
+//мониторы - xxlarge
+//@media screen and (min-width: 1280px) and (max-width: 1600px), (min-width: 1600px) and (max-width: 1920px), (min-width: 1920px)
+///////////////////////////////
+  for i in 1..4
+    @media screen and (min-width: 2**(i+7)px)
+      width: 100px*i
 
-
-//смартфоны
-@media (min-width: 320px) and (max-width: 480px), (min-width: 480px) and (max-width: 768px)
-//планшеты
-@media (min-width: 758px) and (max-width: 1024px)
-//нетбуки
-@media (min-width: 1024px) and (max-width: 1280px)
-//мониторы
-@media (min-width: 1280px) and (max-width: 1600px), (min-width: 1600px) and (max-width: 1920px), (min-width: 1920px)
+//хэши
+//--query = {
+//    small: "screen and (min-width: 554px)",
+//    medium: "screen and (min-width: 768px)",
+//    large: "screen and (min-width: 992px)",
+//    extra-large: "screen and (min-width: 1200px)",
+//}
+//@media --query.large
+//  left: 70px
+///////////////////////////////
 
 
 //:nth-child(n+3):nth-child(-n+15)
-// @media (max-width: 500px)
-//  .foo
-//    color: #000
-//
-//  @media (min-width: 100px), (min-height: 200px)
-//    .foo
-//      color: #100
-//
 
 //full_block_width = 300px
 //
@@ -259,21 +268,11 @@ body.bg-primary
 //    max-width 728px
 
 
-//.foo
-//  for i in 1..4
-//    @media (min-width: 2**(i+7)px)
-//      width: 100px*i
 
 
-//хэши
-//--query = {
-//    small: "screen and (min-width: 554px)",
-//    medium: "screen and (min-width: 768px)",
-//    large: "screen and (min-width: 992px)",
-//    extra-large: "screen and (min-width: 1200px)",
-//}
-//@media --query.large
-//  left: 70px
+
+
+
 
 
 //sizes = {
