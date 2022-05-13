@@ -65,18 +65,66 @@ height()
 //    &:hover
 //      color: red
 
+
+//-pos(type, args)
+//  i = 0
+//  position: unquote(type)
+//  {args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+//  {args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+//
+//absolute()
+//  -pos('absolute', arguments)
+//
+//fixed()
+//  -pos('fixed', arguments)
+//
+//#prompt
+//  absolute: top 150px left 5px
+//  width: 200px
+//  margin-left: -(@width / 2)
+//
+//#logo
+//  fixed: top left
+
+//generate-grid(increment, start, end, return-dimension=false)
+//  total = start
+//  for n, x in 0..((end - start) / increment)
+//    if return-dimension
+//      if x+1 is return-dimension
+//        return total
+//      else
+//      .column-{x+1}
+//        width total
+//    total = total + increment
+
+//миксин установки цвета на ссылку
+//special-homepage-styles(color = '#ccc')
+//  a
+//    color color
+//    &:visited
+//      color navy
+
 u = 1rem
+
 b = black
 c = center
 p = padding
 m = margin
 fon = #F4F3F3
-bkg = background
 
+align()
+  align-content c
+  justify-content c
+  align-items c
+
+// > * + *
 
 body
   p u
-  bkg fon
+  color := fon
+  color ?= fon
+  color = color is defined ? color : white
+  background fon
 
 // <track-list> - 6 групп параметров
 // ~ + mixin __ на значение 209px
@@ -94,14 +142,126 @@ body
 .container
   display grid
   grid-template-rows repeat(3, minmax(195px, auto)) max-content
-  grid-auto-rows 195px
+
+  pad(types = grid-auto-rows grid-auto-columns, n = 100px)
+    grid-auto-rows unit(n, px) if grid-auto-rows in types
+    grid-auto-columns unit(n, px) if grid-auto-columns in types
+  apply-mixins = true
+  pad(grid-auto-rows, 195) if apply-mixins
   grid-gap u
   box-sizing border-box
   height fit-content
-  border 2px solid b
-  align-content c
-  justify-content c
-  align-items c
+  align()
+  //border 2px solid b
+  // переопределили
+  unit := u
+  unit ?= u
+  unit = u is defined ? u : 0
+  sd = solid
+  // захэшируем поля после обработки
+  hpsb = {
+    unit: unit,
+    sd: sd,
+    b: b
+  }
+  // getter - получаем значения из хешей
+  border hpsb.unit hpsb.sd hpsb.b
+
+//:nth-child(n+3):nth-child(-n+15)
+// @media (max-width: 500px)
+//  .foo
+//    color: #000
+//
+//  @media (min-width: 100px), (min-height: 200px)
+//    .foo
+//      color: #100
+//
+
+//full_block_width = 300px
+//
+//three_blocks = "all and (min-width: " + 3*full_block_width + ")"
+//two_blocks = "all and (min-width: " +  2*full_block_width + ") and (max-width: " + (3*full_block_width - 1) + ")"
+//one_block = "all and (max-width: " + (2*full_block_width - 1) + ")"
+//
+//.container
+//  margin: auto
+//
+//@media three_blocks
+//  .container
+//    width: (3*full_block_width)
+//
+//@media two_blocks
+//  .container
+//    width: (2*full_block_width)
+//
+//@media one_block
+//  .container
+//    width: full_block_width
+
+//medium = 'screen and (min-width: 768px)'
+//large = 'screen and (min-width: 992px)'
+//xlarge = 'screen and (min-width: 1200px)'
+//
+//.box
+//  background: #000
+//  @media medium
+//    background: #111
+//  @media large
+//    background: #222
+//  @media xlarge
+//    background: #333
+
+// media
+//media(args...)
+//  output = null
+//  for arg in args
+//    // check for tuple
+//    if arg[1]
+//      push(output,unquote('(%s: %s)' % (arg[0] arg[1])))
+//    else
+//      push(output,unquote(arg))
+//
+//  unquote(s('%s',output))
+//
+//$_media = media(screen,'and',(min-width $screen-tablet))
+//@media $_media
+//  .container
+//    max-width 728px
+
+
+//.foo
+//  for i in 1..4
+//    @media (min-width: 2**(i+7)px)
+//      width: 100px*i
+
+
+//хэши
+//--query = {
+//    small: "screen and (min-width: 554px)",
+//    medium: "screen and (min-width: 768px)",
+//    large: "screen and (min-width: 992px)",
+//    extra-large: "screen and (min-width: 1200px)",
+//}
+//@media --query.large
+//  left: 70px
+
+
+//sizes = {
+//  mobile: 0 768
+//  tablet: 769 1023
+//  desktop: 1024 1215
+//  widescreen: 1216 1407
+//  fullhd: 1408 99999999
+//}
+//query = {}
+//for name, pxs in sizes
+//  min = '(min-width:' + pxs[0] + 'px)'
+//  max = '(max-width:' + pxs[1] + 'px)'
+//  query[name] = min + ' and ' + max
+//  query[name + '-up'] = 'screen and ' + min
+//  query[name + '-down'] = 'screen and ' + max
+// Usage: @media query.mobile or @media query.tablet-up etc...
+
 
 @media (min-width 48em)
   body
@@ -115,3 +275,5 @@ body
   #header
   #footer
     display none
+
+//@media
