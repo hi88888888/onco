@@ -1,7 +1,44 @@
 extends layouts/lt
 
 block append body
-  include layouts/nav.pug
-  include layouts/content.pug
-  include layouts/foot.pug
+
+  - var n = 0;
+  .slider
+    while n < 3
+      .item= n++
+        include layouts/nav.pug
+        include layouts/content.pug
+        include layouts/foot.pug
+
+
+  //<div class="slider">
+  //  <div class="item">
+  //    <img src="img/slide1.jpg" alt="Первый слайд">
+  //    <div class="slideText">Заголовок слайда 1</div>
+  //  </div>
+  //
+  //  <div class="item">
+  //    <img src="img/slide2.jpg" alt="Второй слайд">
+  //    <div class="slideText">Заголовок слайда 2</div>
+  //  </div>
+  //
+  //  <div class="item">
+  //    <img src="img/slide3.jpg" alt="Третий слайд">
+  //    <div class="slideText">Заголовок слайда 3</div>
+  //  </div>
+  //
+  //  <a class="prev" onclick="minusSlide()">&#10094;</a>
+  //  <a class="next" onclick="plusSlide()">&#10095;</a>
+  //</div>
+  //
+  //
+  //<div class="slider-dots">
+  //  <span class="slider-dots_item" onclick="currentSlide(1)"></span>
+  //  <span class="slider-dots_item" onclick="currentSlide(2)"></span>
+  //  <span class="slider-dots_item" onclick="currentSlide(3)"></span>
+  //</div>
+
+  //include layouts/nav.pug
+  //include layouts/content.pug
+  //include layouts/foot.pug
   script(src=`js/bundle.min.${cacheBust}.js`)
