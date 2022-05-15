@@ -183,25 +183,12 @@ body.bg-primary
   // getter - получаем значения из хешей
   border hpsb.unit hpsb.sd hpsb.b
 
-
-//////////////////////////////
-//medium = 'screen and (min-width: 768px)'
-//large = 'screen and (min-width: 992px)'
-//xlarge = 'screen and (min-width: 1200px)'
-
-//смартфоны - medium
-//@media screen and (min-width: 320px) and (max-width: 480px), (min-width: 480px) and (max-width: 768px)
-//планшеты - large
-//@media screen and (min-width: 768px) and (max-width: 992px), (min-width: 992px) and (max-width: 1024px)
-//нетбуки  - xlarge
-//@media screen and (min-width: 1024px) and (max-width: 1280px)
-//мониторы - xxlarge
-//@media screen and (min-width: 1280px) and (max-width: 1600px), (min-width: 1600px) and (max-width: 1920px), (min-width: 1920px)
-///////////////////////////////
   for i in 1..4
     @media screen and (min-width: 2**(i+7)px)
-      width: 100px*i
+      grid-template-rows repeat(3, minmax(195px*i, auto)) max-content
+      //width: 100px*i
 
+// -> 1
 //хэши
 //--query = {
 //    small: "screen and (min-width: 554px)",
@@ -213,43 +200,7 @@ body.bg-primary
 //  left: 70px
 ///////////////////////////////
 
-
-//:nth-child(n+3):nth-child(-n+15)
-
-//full_block_width = 300px
-//
-//three_blocks = "all and (min-width: " + 3*full_block_width + ")"
-//two_blocks = "all and (min-width: " +  2*full_block_width + ") and (max-width: " + (3*full_block_width - 1) + ")"
-//one_block = "all and (max-width: " + (2*full_block_width - 1) + ")"
-//
-//.container
-//  margin: auto
-//
-//@media three_blocks
-//  .container
-//    width: (3*full_block_width)
-//
-//@media two_blocks
-//  .container
-//    width: (2*full_block_width)
-//
-//@media one_block
-//  .container
-//    width: full_block_width
-
-//medium = 'screen and (min-width: 768px)'
-//large = 'screen and (min-width: 992px)'
-//xlarge = 'screen and (min-width: 1200px)'
-//
-//.box
-//  background: #000
-//  @media medium
-//    background: #111
-//  @media large
-//    background: #222
-//  @media xlarge
-//    background: #333
-
+// -> 2
 // media
 //media(args...)
 //  output = null
@@ -267,14 +218,7 @@ body.bg-primary
 //  .container
 //    max-width 728px
 
-
-
-
-
-
-
-
-
+//-> 3
 //sizes = {
 //  mobile: 0 768
 //  tablet: 769 1023
